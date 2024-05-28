@@ -1,12 +1,9 @@
 pathspec==0.12.1
 packaging==24.0
 black==24.4.2
-platformdirs==4.2.2
-isort==5.13.2
 mypy-extensions==1.0.0
 click==8.1.7
 pyflakes==3.2.0
-mccabe==0.7.0
 flake8==7.0.0
 pycodestyle==2.11.1
 pytest-django==4.8.0
@@ -17,7 +14,3 @@ factory-boy==3.3.0
 six==1.16.0
 python-dateutil==2.9.0.post0
 Faker==25.2.0
-astroid==3.2.2
-dill==0.3.8
-pylint==3.2.2
-tomlkit==0.12.5

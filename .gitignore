@@ -159,3 +159,5 @@ cython_debug/
 *.swp
 *.pyc
 *.class
+.vim/
+

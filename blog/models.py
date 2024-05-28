@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.db import models
+from django.urls import reverse
 from django.utils import timezone
 
 
@@ -14,7 +15,7 @@ class Post(models.Model):
         PUBLISHED = "PB", "Published"
 
     title = models.CharField(max_length=250)
-    slug = models.SlugField(max_length=250)
+    slug = models.SlugField(max_length=250, unique_for_date="publish")
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
@@ -27,14 +28,26 @@ class Post(models.Model):
     status = models.CharField(
         max_length=2, choices=Status, default=Status.DRAFT
     )
-    objects = models.Manager()
-    published = PublishedManager()
+
+    objects = models.Manager()  # The default manager.
+    published = PublishedManager()  # Our custom manager.
 
     class Meta:
-        ordering = ("-publish",)
+        ordering = ["-publish"]
         indexes = [
             models.Index(fields=["-publish"]),
         ]
+
+    def get_absolute_url(self):
+        return reverse(
+            "blog:post_detail",
+            args=[
+                self.publish.year,
+                self.publish.month,
+                self.publish.day,
+                self.slug,
+            ],
+        )
 
     def __str__(self):
         return self.title
