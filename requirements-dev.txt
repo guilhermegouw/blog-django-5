@@ -14,3 +14,8 @@ factory-boy==3.3.0
 six==1.16.0
 python-dateutil==2.9.0.post0
 Faker==25.2.0
+parso==0.8.4
+mccabe==0.7.0
+platformdirs==4.2.2
+isort==5.13.2
+jedi==0.19.1
