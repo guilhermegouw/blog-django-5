@@ -3,7 +3,7 @@ from django.contrib.auth import get_user_model
 from django.utils import timezone
 from django.utils.text import slugify
 
-from ..models import Post
+from ..models import Comment, Post
 
 
 class UserFactory(factory.django.DjangoModelFactory):
@@ -25,3 +25,17 @@ class PostFactory(factory.django.DjangoModelFactory):
     body = "This is the body content of the post."
     publish = factory.LazyAttribute(lambda obj: timezone.now())
     status = Post.Status.DRAFT
+
+
+class CommentFactory(factory.django.DjangoModelFactory):
+
+    class Meta:
+        model = Comment
+
+    name = factory.Faker("name")
+    email = factory.Faker("email")
+    body = factory.Faker("text")
+    post = factory.SubFactory(PostFactory)
+    created = factory.LazyFunction(timezone.now)
+    updated = factory.LazyFunction(timezone.now)
+    active = True

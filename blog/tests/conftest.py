@@ -1,7 +1,12 @@
 import pytest
 
 from ..models import Post
-from .factories import PostFactory
+from .factories import PostFactory, UserFactory
+
+
+@pytest.fixture
+def user():
+    return UserFactory()
 
 
 @pytest.fixture

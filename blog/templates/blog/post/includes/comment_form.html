@@ -14,3 +14,8 @@
         <input type="submit" value="Add comment">
     </p>
 </form>
+{% if form.errors %}
+    <div class="error">
+        {{ form.errors }}
+    </div>
+{% endif %}
